@@ -1,0 +1,44 @@
+.container-filmes{
+  width: 100%;
+  max-width: 140rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  gap: 2rem;
+}
+
+.filme{
+  width: 100%;
+  max-width: 33rem;
+  background-color: #222222a1;
+  overflow: hidden;
+  border-radius: .8rem;
+  text-align: center;
+  transition: all .3s;
+}
+
+.filme img{
+  width: 100%;
+  display: block;
+  height: 40rem;
+}
+
+.filme div {
+  display: flex;
+  flex-direction: column;
+}
+
+.filme div a{
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  background-color: #0381FE;
+  padding: 1.2rem 0;
+  width: 100%;
+  transition: all .3s;
+}
+
+.filme div a:hover{
+  opacity: .7;
+}
