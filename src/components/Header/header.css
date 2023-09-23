@@ -15,7 +15,6 @@ header .container{
   align-items: center;
   justify-content: space-between;
   max-width: 120rem;
-  
 }
 
 header a {
@@ -44,5 +43,5 @@ header .meus-filmes{
 }
 
 header .meus-filmes:hover{
-  opacity: .8;
+  opacity: .7;
 }

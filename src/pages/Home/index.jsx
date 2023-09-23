@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react'
 import api from '../../services/api'
 import { Link } from 'react-router-dom'
 import './home.css'
+import Loader from '../../components/Loader'
 
 function Home() {
   const [filmes, setFilmes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadFilmes() {
@@ -16,13 +18,21 @@ function Home() {
         }
       })
       setFilmes(response.data.results)
+      setLoading(false)
     }
 
     loadFilmes()
   }, [])
 
+  if (loading) {
+    return (
+      <Loader />
+    )
+  }
+
   return (
     <section className='container-filmes'>
+
       {filmes.map(filme => {
         return (
           <article key={filme.id} className='filme'>
