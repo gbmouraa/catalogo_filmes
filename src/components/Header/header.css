@@ -1,12 +1,15 @@
 header {
   width: 100%;
   height: 8rem;
-  background-color: #222222a1;
+  background-color: #222222;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 1.6rem;
   margin-bottom: 7rem;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 header .container{
@@ -36,7 +39,7 @@ header .logo span{
 header .meus-filmes{
   background-color: #0381FE;
   padding: .8rem 1.8rem;
-  border-radius: 1.8rem;
+  border-radius: .6rem;
   font-weight: 600;
   transition-property: opacity;
   transition-duration: .3s;

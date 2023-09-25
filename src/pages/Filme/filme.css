@@ -48,6 +48,11 @@
   transition-duration: .3s;
 }
 
+.area-buttons button a{
+  color: #000;
+  text-decoration: none;
+}
+
 .area-buttons button:hover{
   opacity: .7;
 }

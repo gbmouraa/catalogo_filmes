@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import api from '../../services/api'
 import './filme.css'
 import Loader from '../../components/Loader'
+import { toast } from 'react-toastify'
 
 function Filme() {
   const { id } = useParams()
@@ -43,11 +44,14 @@ function Filme() {
 
     const hasFilme = filmesSalvos.some(filmeSalvo => filmeSalvo.id === filme.id)
 
-    if (hasFilme) return
+    if (hasFilme) {
+      toast.warn("Este filme ja esta na sua lista!")
+      return
+    }
 
     filmesSalvos.push(filme)
     localStorage.setItem("@yourmovie", JSON.stringify(filmesSalvos))
-
+    toast.success("Filme salvo com sucesso!")
   }
 
   return (
@@ -59,7 +63,9 @@ function Filme() {
       <p className='avaliacao'>Avaliação: {filme.vote_average}/10</p>
       <div className="area-buttons">
         <button onClick={salvarFilme}>Salvar</button>
-        <button>Trailer</button>
+        <button>
+          <a target='blank' rel='external' href={`https://youtube.com/results?search_query=${filme.title} Trailer`}>Trailer</a>
+        </button>
       </div>
     </section>
   )
