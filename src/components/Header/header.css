@@ -12,12 +12,12 @@ header {
   left: 0;
 }
 
-header .container{
+header .container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 120rem;
+  max-width: 135rem;
 }
 
 header a {
@@ -32,11 +32,11 @@ header .logo {
   letter-spacing: .1rem;
 }
 
-header .logo span{
+header .logo span {
   font-size: 1.6rem;
 }
 
-header .meus-filmes{
+header .meus-filmes {
   background-color: #0381FE;
   padding: .8rem 1.8rem;
   border-radius: .6rem;
@@ -45,6 +45,11 @@ header .meus-filmes{
   transition-duration: .3s;
 }
 
-header .meus-filmes:hover{
+header .meus-filmes:hover {
   opacity: .7;
+}
+
+header .actions {
+  display: flex;
+  align-items: center;
 }
