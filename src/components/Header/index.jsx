@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom"
-import './header.css'
+import { Link } from "react-router-dom";
+import User from "../User";
+import "./header.css";
 
 function Header() {
   return (
     <header>
       <div className="container">
-        <Link className="logo" to="/">YourMovie<span>.com</span></Link>
-        <Link className="meus-filmes" to="/favoritos">Meus Filmes</Link>
+        <Link className="logo" to="/">
+          YourMovie<span>.com</span>
+        </Link>
+        <div className="actions">
+          <User />
+          <Link className="meus-filmes" to="/favoritos">
+            Meus Filmes
+          </Link>
+        </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
