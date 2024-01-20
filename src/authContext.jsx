@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db, auth } from "./services/firebaseConection";
 import {
@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { set } from "zod";
 
 const AuthContext = createContext({});
 
@@ -17,6 +18,12 @@ const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const userStorage = localStorage.getItem("@your-movie");
+
+    if (userStorage) setUser(JSON.parse(userStorage));
+  }, []);
+
   async function signUp(name, email, password) {
     setLoadingAuth(true);
     await createUserWithEmailAndPassword(auth, email, password)
@@ -24,7 +31,7 @@ const AuthProvider = ({ children }) => {
         let uid = value.user.uid;
 
         await setDoc(doc(db, "users", uid), {
-          nome: name,
+          name: name,
           avatarUrl: null,
         }).then(() => {
           let data = {
@@ -68,7 +75,7 @@ const AuthProvider = ({ children }) => {
         setUserStorage(data);
         setLoadingAuth(false);
         navigate("/");
-        toast.success("Bem vindo de volta");
+        toast.success(`Bem vindo de volta ${data.name}`);
       })
       .catch((error) => {
         console.log(error);
@@ -81,6 +88,12 @@ const AuthProvider = ({ children }) => {
     localStorage.setItem("@your-movie", JSON.stringify(user));
   }
 
+  async function logOut() {
+    await signOut(auth);
+    setUser(null);
+    localStorage.removeItem("@your-movie");
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -88,6 +101,7 @@ const AuthProvider = ({ children }) => {
         user,
         signUp,
         signIn,
+        logOut,
         loadingAuth,
       }}
     >
