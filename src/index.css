@@ -10,7 +10,7 @@ html {
 
 body {
   width: 100%;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   font-family: 'Inter', sans-serif;
   font-size: 1.6rem;
   background-color: #000;
@@ -24,4 +24,20 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.default-btn {
+  color: #fff;
+  background-color: #0381fe;
+  padding: 1.2rem 2.4rem;
+  outline: none;
+  border: none;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.default-btn:hover {
+  opacity: .7;
 }
