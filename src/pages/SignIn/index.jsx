@@ -31,9 +31,6 @@ function SignIn() {
     const { email, password } = data;
 
     console.log(data);
-    setInterval(() => {
-      setLoadingAuth(false);
-    }, 1000);
 
     // await signIn(email, password);
   }
