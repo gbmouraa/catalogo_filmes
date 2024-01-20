@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import "./user.css";
 
 const User = () => {
-  const { signed, user } = useContext(AuthContext);
+  const { signed, user, logOut } = useContext(AuthContext);
 
   if (signed) {
     return (
@@ -19,7 +19,7 @@ const User = () => {
         <div>
           <span>Olá, {user.name}</span>
           <span className="acount-actions">
-            <a>Minha conta</a> | <button>Sair</button>
+            <a>Minha conta</a> | <button onClick={() => logOut()}>Sair</button>
           </span>
         </div>
       </div>
