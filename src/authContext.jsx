@@ -8,20 +8,27 @@ import {
 } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { set } from "zod";
 
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
   const [loadingAuth, setLoadingAuth] = useState(false);
+  // carregar usuario do localStorage, usada para definir oque será retornado na rota privada
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userStorage = localStorage.getItem("@your-movie");
+    async function loadUserStorage() {
+      const userStorage = localStorage.getItem("@your-movie");
 
-    if (userStorage) setUser(JSON.parse(userStorage));
+      if (userStorage) setUser(JSON.parse(userStorage));
+      setLoading(false);
+    }
+
+    loadUserStorage();
   }, []);
 
   async function signUp(name, email, password) {
@@ -92,6 +99,7 @@ const AuthProvider = ({ children }) => {
     await signOut(auth);
     setUser(null);
     localStorage.removeItem("@your-movie");
+    navigate("/");
   }
 
   return (
@@ -103,6 +111,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         logOut,
         loadingAuth,
+        loading,
       }}
     >
       {children}
