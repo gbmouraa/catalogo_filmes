@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const AuthContext = createContext({});
@@ -48,6 +48,35 @@ const AuthProvider = ({ children }) => {
       });
   }
 
+  async function signIn(email, password) {
+    setLoadingAuth(true);
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(async (value) => {
+        let uid = value.user.uid;
+
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        let data = {
+          userID: uid,
+          name: docSnap.data().name,
+          email: value.user.email,
+          avatarUrl: docSnap.data().avatarUrl,
+        };
+
+        setUser(data);
+        setUserStorage(data);
+        setLoadingAuth(false);
+        navigate("/");
+        toast.success("Bem vindo de volta");
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoadingAuth(false);
+        toast.error("Ocorreu um erro, tente novamente mais tarde.");
+      });
+  }
+
   function setUserStorage(user) {
     localStorage.setItem("@your-movie", JSON.stringify(user));
   }
@@ -58,6 +87,7 @@ const AuthProvider = ({ children }) => {
         signed: !!user,
         user,
         signUp,
+        signIn,
         loadingAuth,
       }}
     >

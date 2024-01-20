@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../authContext";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,17 +24,13 @@ function SignIn() {
     formState: { errors },
   } = useForm({ resolver: zodResolver(schema) });
 
-  const [loadingAuth, setLoadingAuth] = useState(false);
+  const { loadingAuth, signIn } = useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(data) {
-    setLoadingAuth(true);
     const { email, password } = data;
-
-    console.log(data);
-
-    // await signIn(email, password);
+    await signIn(email, password);
   }
 
   return (
