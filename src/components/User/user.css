@@ -1,0 +1,47 @@
+.user {
+  margin-right: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.user div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.acount-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.acount-actions button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.acount-actions button:hover,
+.acount-actions a:hover,
+.login-actions a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-actions span {
+  display: flex;
+}
+
+.login-actions a {
+  font-weight: 600;
+}
