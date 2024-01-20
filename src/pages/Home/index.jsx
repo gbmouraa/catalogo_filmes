@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
-import api from '../../services/api'
-import { Link } from 'react-router-dom'
-import './home.css'
-import Loader from '../../components/Loader'
+import { useEffect, useState } from "react";
+import Header from "../../components/Header";
+import api from "../../services/api";
+import { Link } from "react-router-dom";
+import "./home.css";
+import Loader from "../../components/Loader";
 
 function Home() {
-  const [filmes, setFilmes] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [filmes, setFilmes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadFilmes() {
@@ -14,37 +15,40 @@ function Home() {
         params: {
           api_key: "cf0ac2dec34f1b7ed67c633f20a75d67",
           language: "pt-br",
-          page: 1
-        }
-      })
-      setFilmes(response.data.results)
-      setLoading(false)
+          page: 1,
+        },
+      });
+      setFilmes(response.data.results);
+      setLoading(false);
     }
 
-    loadFilmes()
-  }, [])
+    loadFilmes();
+  }, []);
 
   if (loading) {
-    return (
-      <Loader />
-    )
+    return <Loader />;
   }
 
   return (
-    <section className='container-filmes'>
-
-      {filmes.map(filme => {
-        return (
-          <article key={filme.id} className='filme'>
-            <img src={`https://image.tmdb.org/t/p/original${filme.poster_path}`} alt={filme.title} />
-            <div>
-              <Link to={`/filme/${filme.id}`}>Acessar</Link>
-            </div>
-          </article>
-        )
-      })}
-    </section>
-  )
+    <>
+      <Header />
+      <section className="container-filmes">
+        {filmes.map((filme) => {
+          return (
+            <article key={filme.id} className="filme">
+              <img
+                src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
+                alt={filme.title}
+              />
+              <div>
+                <Link to={`/filme/${filme.id}`}>Acessar</Link>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    </>
+  );
 }
 
-export default Home
+export default Home;
