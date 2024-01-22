@@ -11,29 +11,31 @@ import UserDetails from "../pages/UserDetails";
 
 function RoutesApp() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/filme/:id" element={<Filme />} />
-      <Route
-        path="/favoritos"
-        element={
-          <Private>
-            <Favoritos />
-          </Private>
-        }
-      />
-      <Route
-        path="/userdetails"
-        element={
-          <Private>
-            <UserDetails />
-          </Private>
-        }
-      />
-      <Route path="/login" element={<SignIn />} />
-      <Route path="/register" element={<SignUp />} />
-      <Route path="*" element={<Erro />} />
-    </Routes>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/filme/:id" element={<Filme />} />
+        <Route
+          path="/favoritos"
+          element={
+            <Private>
+              <Favoritos />
+            </Private>
+          }
+        />
+        <Route
+          path="/userdetails"
+          element={
+            <Private>
+              <UserDetails />
+            </Private>
+          }
+        />
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/register" element={<SignUp />} />
+        <Route path="*" element={<Erro />} />
+      </Routes>
+    </div>
   );
 }
 

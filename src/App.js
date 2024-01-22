@@ -8,10 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <div className="App">
-          <ToastContainer />
-          <RoutesApp />
-        </div>
+        <ToastContainer />
+        <RoutesApp />
       </AuthProvider>
     </BrowserRouter>
   );
