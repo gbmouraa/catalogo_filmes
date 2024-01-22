@@ -16,7 +16,7 @@ const AuthProvider = ({ children }) => {
 
   const [loadingAuth, setLoadingAuth] = useState(false);
   // carregar usuario do localStorage, usada para definir oque será retornado na rota privada
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -24,7 +24,9 @@ const AuthProvider = ({ children }) => {
     async function loadUserStorage() {
       const userStorage = localStorage.getItem("@your-movie");
 
-      if (userStorage) setUser(JSON.parse(userStorage));
+      if (userStorage) {
+        setUser(JSON.parse(userStorage));
+      }
       setLoading(false);
     }
 
