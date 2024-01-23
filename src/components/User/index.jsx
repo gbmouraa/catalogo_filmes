@@ -19,7 +19,7 @@ const User = () => {
         <div>
           <span>Olá, {user.name}</span>
           <span className="acount-actions">
-            <Link to="userdetails">Minha conta</Link> |{" "}
+            <Link to="/userdetails">Minha conta</Link> |{" "}
             <button onClick={() => logOut()}>Sair</button>
           </span>
         </div>
