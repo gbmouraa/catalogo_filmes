@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function loadUserStorage() {
+    function loadUserStorage() {
       const userStorage = localStorage.getItem("@your-movie");
 
       if (userStorage) {
@@ -109,11 +109,13 @@ const AuthProvider = ({ children }) => {
       value={{
         signed: !!user,
         user,
+        setUser,
         signUp,
         signIn,
         logOut,
         loadingAuth,
         loading,
+        setUserStorage,
       }}
     >
       {children}
