@@ -15,6 +15,15 @@
   z-index: -999;
 }
 
+.user-avatar {
+  img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
 .user-info {
   display: flex;
   color: #fff;
