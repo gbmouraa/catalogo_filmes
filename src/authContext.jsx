@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
         let uid = value.user.uid;
 
         await setDoc(doc(db, "users", uid), {
+          userID: uid,
           name: name,
           avatarUrl: null,
         }).then(() => {
@@ -49,7 +50,6 @@ const AuthProvider = ({ children }) => {
             email: value.user.email,
             avatarUrl: null,
           };
-
           setUser(data);
           setUserStorage(data);
           navigate("/");
@@ -79,7 +79,6 @@ const AuthProvider = ({ children }) => {
           email: value.user.email,
           avatarUrl: docSnap.data().avatarUrl,
         };
-
         setUser(data);
         setUserStorage(data);
         setLoadingAuth(false);

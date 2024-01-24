@@ -13,7 +13,7 @@ const User = () => {
         {user.avatarUrl === null ? (
           <FaRegUserCircle size={32} color="#fff" />
         ) : (
-          <img src={user.avatarUrl} alt="Avatar" />
+          <img src={user.avatarUrl} alt="Avatar" className="user-img" />
         )}
 
         <div>
