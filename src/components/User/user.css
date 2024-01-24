@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.user-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .user div {
   display: flex;
   flex-direction: column;
