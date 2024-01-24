@@ -1,7 +1,8 @@
 import { useState, useContext, useRef } from "react";
 import { AuthContext } from "../../authContext";
 import { updateDoc, doc } from "firebase/firestore";
-import { db } from "../../services/firebaseConection";
+import { db, storage } from "../../services/firebaseConection";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Header from "../../components/Header";
 import { FaHeart, FaRegUserCircle } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
@@ -30,6 +31,7 @@ function UserDetails() {
 
   async function handleSubmit() {
     const name = nameRef.current.value;
+
     if (name === "" && profileImg === null) return;
 
     if (name !== "" && profileImg === null) {
@@ -56,7 +58,44 @@ function UserDetails() {
           console.log(error);
           toast.error("Ocorreu um erro tente novamente");
         });
+
+      return;
     }
+    handleUpload();
+  }
+
+  async function handleUpload() {
+    const uid = user.userID;
+
+    const uploadRef = ref(storage, `images/${uid}/${profileImg.name}`);
+
+    await uploadBytes(uploadRef, profileImg).then((snapShot) => {
+      getDownloadURL(snapShot.ref).then(async (downloadUrl) => {
+        let profileImgUrl = downloadUrl;
+
+        const docRef = doc(db, "users", uid);
+
+        await updateDoc(docRef, {
+          ...user,
+          avatarUrl: profileImgUrl,
+        })
+          .then(() => {
+            let data = {
+              ...user,
+              avatarUrl: profileImgUrl,
+            };
+
+            setUser(data);
+            setUserStorage(data);
+            toast.success("Perfil atualizado.");
+            setIsEditing(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Algo deu errado, tente novamente.");
+          });
+      });
+    });
   }
 
   return (
