@@ -113,7 +113,7 @@ function SignUp() {
               Cadastrar
             </button>
             <Link
-              to="/"
+              to="/login"
               style={{
                 width: "100%",
                 textAlign: "center",
