@@ -1,0 +1,48 @@
+.container-modal-logout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0f0f0fc5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-logout {
+    span {
+      font-size: 24px;
+    }
+
+    .actions {
+      margin-top: 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .btn-sair {
+        color: #fff;
+        padding: 8px 18px;
+        background-color: rgb(167, 22, 22);
+        border-radius: 5px;
+      }
+
+      .btn-voltar {
+        color: #fff;
+        background-color: transparent;
+      }
+    }
+  }
+}
