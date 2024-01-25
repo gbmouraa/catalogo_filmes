@@ -1,5 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { db } from "../../services/firebaseConection";
+import { doc, updateDoc } from "firebase/firestore";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../authContext";
 import api from "../../services/api";
 import "./filme.css";
 import Loader from "../../components/Loader";
@@ -8,8 +11,11 @@ import { toast } from "react-toastify";
 function Filme() {
   const { id } = useParams();
   const [filme, setFilme] = useState({});
+  const [filmesSalvos, setFilmesSalvos] = useState(null);
   const [loading, setloading] = useState(true);
   const navigation = useNavigate();
+
+  const { user, setUser, setUserStorage } = useContext(AuthContext);
 
   useEffect(() => {
     async function loadFilme() {
@@ -32,28 +38,63 @@ function Filme() {
     loadFilme();
   }, [id, navigation]);
 
+  useEffect(() => {
+    function loadFilmesSalvos() {
+      const storageData = JSON.parse(localStorage.getItem("@your-movie"));
+      const hasFilmesSalvos = storageData.filmes;
+      if (hasFilmesSalvos.length > 0) setFilmesSalvos(hasFilmesSalvos);
+    }
+
+    loadFilmesSalvos();
+  }, []);
+
+  const salvarFilme = async () => {
+    if (filmesSalvos !== null && filmesSalvos.length > 0) {
+      const hasFilme = filmesSalvos.some(
+        (filmeSalvo) => filmeSalvo.id === filme.id
+      );
+
+      if (hasFilme) {
+        toast.warn("Este filme ja esta na sua lista!");
+        return;
+      }
+    }
+
+    let arrFilme = [];
+
+    if (filmesSalvos === null || filmesSalvos.length === 0) {
+      arrFilme.push(filme);
+    } else {
+      arrFilme = [...filmesSalvos, filme];
+    }
+
+    setFilmesSalvos(arrFilme);
+
+    const uid = user.userID;
+    const docRef = doc(db, "users", uid);
+
+    await updateDoc(docRef, {
+      ...user,
+      filmes: arrFilme,
+    })
+      .then(() => {
+        let data = {
+          ...user,
+          filmes: arrFilme,
+        };
+        setUserStorage(data);
+        setUser(data);
+        toast.success("Filme salvo com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Ocorreu um erro, tente novamente.");
+      });
+  };
+
   if (loading) {
     return <Loader />;
   }
-
-  const salvarFilme = () => {
-    const minhaLista = localStorage.getItem("@yourmovie");
-
-    let filmesSalvos = JSON.parse(minhaLista) || [];
-
-    const hasFilme = filmesSalvos.some(
-      (filmeSalvo) => filmeSalvo.id === filme.id
-    );
-
-    if (hasFilme) {
-      toast.warn("Este filme ja esta na sua lista!");
-      return;
-    }
-
-    filmesSalvos.push(filme);
-    localStorage.setItem("@yourmovie", JSON.stringify(filmesSalvos));
-    toast.success("Filme salvo com sucesso!");
-  };
 
   return (
     <section className="container-filme">
