@@ -13,9 +13,9 @@ function Filme() {
   const [filme, setFilme] = useState({});
   const [filmesSalvos, setFilmesSalvos] = useState(null);
   const [loading, setloading] = useState(true);
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
-  const { user, setUser, setUserStorage } = useContext(AuthContext);
+  const { user, setUser, setUserStorage, signed } = useContext(AuthContext);
 
   useEffect(() => {
     async function loadFilme() {
@@ -31,24 +31,31 @@ function Filme() {
           setloading(false);
         })
         .catch(() => {
-          navigation("/", { replace: true });
+          navigate("/", { replace: true });
           return;
         });
     }
     loadFilme();
-  }, [id, navigation]);
+  }, [id, navigate]);
 
   useEffect(() => {
     function loadFilmesSalvos() {
       const storageData = JSON.parse(localStorage.getItem("@your-movie"));
-      const hasFilmesSalvos = storageData.filmes;
-      if (hasFilmesSalvos.length > 0) setFilmesSalvos(hasFilmesSalvos);
+      const hasFilmesSalvos = storageData?.filmes;
+      if (hasFilmesSalvos && hasFilmesSalvos.length > 0)
+        setFilmesSalvos(hasFilmesSalvos);
     }
 
     loadFilmesSalvos();
   }, []);
 
   const salvarFilme = async () => {
+    if (!signed) {
+      toast.warn("Faça login para salvar um filme.");
+      navigate("/login");
+      return;
+    }
+
     if (filmesSalvos !== null && filmesSalvos.length > 0) {
       const hasFilme = filmesSalvos.some(
         (filmeSalvo) => filmeSalvo.id === filme.id
