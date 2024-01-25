@@ -10,7 +10,7 @@ import "./userDetails.scss";
 import { toast } from "react-toastify";
 
 function UserDetails() {
-  const { user, setUser, setUserStorage } = useContext(AuthContext);
+  const { user, setUser, setUserStorage, logOut } = useContext(AuthContext);
 
   const [isEditing, setIsEditing] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
@@ -192,7 +192,9 @@ function UserDetails() {
               <button className="btn-edit" onClick={() => setIsEditing(true)}>
                 Editar perfil
               </button>
-              <button className="btn-logout">Sair</button>
+              <button className="btn-logout" onClick={() => logOut()}>
+                Sair
+              </button>
             </div>
           </>
         )}
