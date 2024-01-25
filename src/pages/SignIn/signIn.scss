@@ -33,14 +33,16 @@
   align-items: center;
   font-size: 1.6rem;
   flex-direction: column;
-  border: 0.1rem solid #292929;
   border-radius: 0.8rem;
   overflow: hidden;
-  background-color: #202020;
+  background-color: #0f0f0f;
 
-  h1 {
+  .your-movie {
     font-weight: 300;
     margin-bottom: 2.4rem;
+    font-size: 32px;
+    text-decoration: none;
+    color: #fff;
   }
 
   .loading-area {
@@ -132,7 +134,7 @@
         left: 1.6rem;
         font-size: 1.4rem;
         padding: 0 0.8rem;
-        background-color: #202020;
+        background-color: #0f0f0f;
       }
 
       &:not(:focus) + label {

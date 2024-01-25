@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
 import { AuthContext } from "../../authContext";
 import { Link } from "react-router-dom";
 import { z } from "zod";
@@ -39,7 +38,9 @@ function SignIn() {
         <div className="loading-area">
           <span className={loadingAuth ? "loading-animation" : ""}></span>
         </div>
-        <h1>YourMovie.com</h1>
+        <Link to="/" className="your-movie">
+          YourMovie.com
+        </Link>
 
         <span>Login</span>
         <p>Use a conta cadastrada para fazer login.</p>

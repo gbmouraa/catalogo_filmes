@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { AuthContext } from "../../authContext";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
@@ -41,7 +40,9 @@ function SignUp() {
         <div className="loading-area">
           <span className={loadingAuth ? "loading-animation" : ""}></span>
         </div>
-        <h1>YourMovie.com</h1>
+        <Link to="/" className="your-movie">
+          YourMovie.com
+        </Link>
 
         <span style={{ marginBottom: "0" }}>Criar nova conta</span>
 
