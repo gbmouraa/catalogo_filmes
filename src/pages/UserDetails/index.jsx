@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { AuthContext } from "../../authContext";
 import { updateDoc, doc } from "firebase/firestore";
 import { db, storage } from "../../services/firebaseConection";
@@ -15,8 +15,21 @@ function UserDetails() {
   const [isEditing, setIsEditing] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
   const [profileImg, setProfileImg] = useState(null);
+  const [qtdFilmesSalvos, setQtdFilmesSalvos] = useState(null);
 
   const nameRef = useRef(null);
+
+  useEffect(() => {
+    function loadFilmes() {
+      const storageData = JSON.parse(localStorage.getItem("@your-movie"));
+      const hasFilmes = storageData?.filmes;
+      if (hasFilmes && hasFilmes.length > 0) {
+        setQtdFilmesSalvos(hasFilmes.length);
+      }
+    }
+
+    loadFilmes();
+  }, []);
 
   function handleFile(e) {
     const img = e.target.files[0];
@@ -48,7 +61,6 @@ function UserDetails() {
             ...user,
             name: name,
           };
-
           setUserStorage(data);
           setUser(data);
           setIsEditing(false);
@@ -65,6 +77,8 @@ function UserDetails() {
   }
 
   async function handleUpload() {
+    if (profileImg === "") return;
+
     const uid = user.userID;
 
     const uploadRef = ref(storage, `images/${uid}/${profileImg.name}`);
@@ -84,7 +98,6 @@ function UserDetails() {
               ...user,
               avatarUrl: profileImgUrl,
             };
-
             setUser(data);
             setUserStorage(data);
             toast.success("Perfil atualizado.");
@@ -96,6 +109,13 @@ function UserDetails() {
           });
       });
     });
+  }
+
+  function handleBack() {
+    const currentImg = user && user.avatarUrl;
+    setIsEditing(false);
+    setAvatarUrl(currentImg);
+    setProfileImg("");
   }
 
   return (
@@ -111,7 +131,7 @@ function UserDetails() {
                     <img src={avatarUrl} alt="Avatar" />
                   </div>
                 ) : (
-                  <FaRegUserCircle size={52} />
+                  <FaRegUserCircle size={72} />
                 )}
                 <input
                   type="file"
@@ -138,7 +158,7 @@ function UserDetails() {
               <button className="btn-save" onClick={() => handleSubmit()}>
                 Salvar
               </button>
-              <button className="btn-back" onClick={() => setIsEditing(false)}>
+              <button className="btn-back" onClick={handleBack}>
                 Voltar
               </button>
             </div>
@@ -152,7 +172,7 @@ function UserDetails() {
                     <img src={avatarUrl} alt="Avatar" />
                   </div>
                 ) : (
-                  <FaRegUserCircle size={52} />
+                  <FaRegUserCircle size={72} />
                 )}
               </div>
               <div>
@@ -162,8 +182,10 @@ function UserDetails() {
             </div>
 
             <span>
-              <FaHeart size={14} color="#fff" style={{ marginRight: "8px" }} />2
-              filmes favoritados
+              <FaHeart size={14} color="#fff" style={{ marginRight: "8px" }} />
+              {qtdFilmesSalvos
+                ? `Você possui ${qtdFilmesSalvos} filmes favoritados`
+                : "Você não possui nenhum filme favoritado"}
             </span>
 
             <div className="user-actions">
