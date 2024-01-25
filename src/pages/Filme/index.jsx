@@ -1,11 +1,12 @@
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../../services/firebaseConection";
 import { doc, updateDoc } from "firebase/firestore";
-import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../authContext";
 import api from "../../services/api";
 import "./filme.css";
 import Loader from "../../components/Loader";
+import Header from "../../components/Header";
 import { toast } from "react-toastify";
 
 function Filme() {
@@ -104,28 +105,32 @@ function Filme() {
   }
 
   return (
-    <section className="container-filme">
-      <h1>{filme.title}</h1>
-      <img
-        src={`https://image.tmdb.org/t/p/original${filme.backdrop_path}`}
-        alt={filme.title}
-      />
-      <strong>Sinopse</strong>
-      <p>{filme.overview}</p>
-      <p className="avaliacao">Avaliação: {filme.vote_average}/10</p>
-      <div className="area-buttons">
-        <button onClick={salvarFilme}>Salvar</button>
-        <button>
-          <a
-            target="blank"
-            rel="external"
-            href={`https://youtube.com/results?search_query=${filme.title} Trailer`}
-          >
-            Trailer
-          </a>
-        </button>
-      </div>
-    </section>
+    <>
+      <Header />
+
+      <section className="container-filme">
+        <h1>{filme.title}</h1>
+        <img
+          src={`https://image.tmdb.org/t/p/original${filme.backdrop_path}`}
+          alt={filme.title}
+        />
+        <strong>Sinopse</strong>
+        <p>{filme.overview}</p>
+        <p className="avaliacao">Avaliação: {filme.vote_average}/10</p>
+        <div className="area-buttons">
+          <button onClick={salvarFilme}>Salvar</button>
+          <button>
+            <a
+              target="blank"
+              rel="external"
+              href={`https://youtube.com/results?search_query=${filme.title} Trailer`}
+            >
+              Trailer
+            </a>
+          </button>
+        </div>
+      </section>
+    </>
   );
 }
 

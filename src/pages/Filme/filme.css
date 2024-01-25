@@ -1,23 +1,23 @@
-.container-filme{
+.container-filme {
   width: 100%;
-  max-width: 120rem;
+  max-width: 90rem;
   margin: auto;
   padding: 0 1.6rem;
 }
 
-.container-filme h1{
+.container-filme h1 {
   font-size: 3rem;
   font-weight: 600;
   margin-bottom: 1.6rem;
 }
 
-.container-filme img{
+.container-filme img {
   width: 100%;
   border-radius: 1.2rem;
   display: block;
 }
 
-.container-filme strong{
+.container-filme strong {
   display: block;
   margin: 1.6rem 0;
   font-size: 2.4rem;
@@ -35,7 +35,7 @@
   column-gap: 1.6rem;
 }
 
-.area-buttons button{
+.area-buttons button {
   border: none;
   outline: none;
   font-size: 2rem;
@@ -48,11 +48,11 @@
   transition-duration: .3s;
 }
 
-.area-buttons button a{
+.area-buttons button a {
   color: #000;
   text-decoration: none;
 }
 
-.area-buttons button:hover{
+.area-buttons button:hover {
   opacity: .7;
 }

@@ -184,7 +184,7 @@ function UserDetails() {
             <span>
               <FaHeart size={14} color="#fff" style={{ marginRight: "8px" }} />
               {qtdFilmesSalvos
-                ? `Você possui ${qtdFilmesSalvos} filmes favoritados`
+                ? `Você possui ${qtdFilmesSalvos} filme(s) favoritados`
                 : "Você não possui nenhum filme favoritado"}
             </span>
 
