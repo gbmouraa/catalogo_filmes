@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../authContext";
 import { Link } from "react-router-dom";
 import User from "../User";
-import "./header.css";
+import "./header.scss";
 import ModalLogout from "../ModalLogout";
 
 function Header() {
