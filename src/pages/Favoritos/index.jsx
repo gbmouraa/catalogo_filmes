@@ -6,6 +6,8 @@ import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import "./favoritos.css";
 import { toast } from "react-toastify";
+import { IoLogOutOutline } from "react-icons/io5";
+import { FaTrashCan } from "react-icons/fa6";
 
 function Favoritos() {
   const { user, setUser, setUserStorage } = useContext(AuthContext);
@@ -54,24 +56,36 @@ function Favoritos() {
       <section className="container-favoritos">
         <h1>Meus Filmes</h1>
         {filmes.length === 0 && <span>Você não possui filmes salvos :(</span>}
-        <ul>
+        <section className="container-filmes favoritos">
           {filmes.map((filme) => {
             return (
-              <li key={filme.id}>
-                <span className="titulo">{filme.title}</span>
-                <div>
-                  <Link to={`/filme/${filme.id}`}>Detalhes</Link>
-                  <button
-                    className="btn-excluir"
-                    onClick={() => excluirFilme(filme.id)}
-                  >
-                    Excluir
-                  </button>
-                </div>
-              </li>
+              <div key={filme.id} className="card-favorito">
+                <button
+                  className="btn-excluir"
+                  onClick={() => excluirFilme(filme.id)}
+                >
+                  <FaTrashCan />
+                </button>
+                <article className="filme favorito">
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
+                    alt={filme.title}
+                  />
+                  <Link to={`/filme/${filme.id}`} className="filme-focus">
+                    <span>{filme.title}</span>
+                    <div>
+                      Acessar{" "}
+                      <IoLogOutOutline
+                        size={36}
+                        style={{ marginLeft: "4px" }}
+                      />
+                    </div>
+                  </Link>
+                </article>
+              </div>
             );
           })}
-        </ul>
+        </section>
       </section>
     </>
   );
