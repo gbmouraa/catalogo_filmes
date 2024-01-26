@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import { AuthContext } from "../../authContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import User from "../User";
 import "./header.scss";
 import ModalLogout from "../ModalLogout";
@@ -8,6 +8,9 @@ import { IoSearch } from "react-icons/io5";
 
 function Header() {
   const { logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const searchRef = useRef(null);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,6 +27,17 @@ function Header() {
     setModalIsOpen(false);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const movieToSearch = searchRef.current.value;
+
+    if (movieToSearch === "" || movieToSearch === null) return;
+
+    // parametro passado por url para pagina search
+    const movie = encodeURIComponent(movieToSearch);
+    navigate(`/search/${movie}`);
+  }
+
   return (
     <>
       <header>
@@ -31,8 +45,12 @@ function Header() {
           <Link className="logo" to="/">
             YourMovie<span>.com</span>
           </Link>
-          <form onSubmit={() => alert("fsdf")}>
-            <input type="text" placeholder="Busque por algum filme" />
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              placeholder="Busque por algum filme"
+              ref={searchRef}
+            />
             <button type="submit">
               <IoSearch size={20} color="#919191" />
             </button>
