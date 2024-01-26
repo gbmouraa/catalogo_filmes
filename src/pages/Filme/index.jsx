@@ -8,6 +8,7 @@ import "./filme.css";
 import Loader from "../../components/Loader";
 import Header from "../../components/Header";
 import { toast } from "react-toastify";
+import { FaStar } from "react-icons/fa";
 
 function Filme() {
   const { id } = useParams();
@@ -116,7 +117,17 @@ function Filme() {
         />
         <strong>Sinopse</strong>
         <p>{filme.overview}</p>
-        <p className="avaliacao">Avaliação: {filme.vote_average}/10</p>
+        <p className="labels-genero">
+          {filme.genres.map((genre) => (
+            <span key={genre.name} className="genero">
+              {genre.name}
+            </span>
+          ))}
+        </p>
+        <p className="avaliacao">
+          Avaliação: <FaStar color="#ffff00" style={{ margin: "0px 4px" }} />
+          {Number(filme.vote_average).toFixed(1)}
+        </p>
         <div className="area-buttons">
           <button onClick={salvarFilme}>Salvar</button>
           <button>

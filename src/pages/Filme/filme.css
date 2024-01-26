@@ -24,7 +24,7 @@
 }
 
 .avaliacao {
-  display: block;
+  display: flex;
   margin: 1.6rem 0;
   font-weight: 600;
   font-size: 1.8rem;
@@ -55,4 +55,17 @@
 
 .area-buttons button:hover {
   opacity: .7;
+}
+
+.labels-genero {
+  margin-top: 20px;
+  display: flex;
+  column-gap: 8px;
+}
+
+.genero {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 18px;
+  background-color: #0381FE;
 }
