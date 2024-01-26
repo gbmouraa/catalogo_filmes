@@ -4,8 +4,10 @@ import { AuthContext } from "../../authContext";
 import { FaRegUserCircle } from "react-icons/fa";
 import "./user.css";
 
-const User = () => {
-  const { signed, user, logOut } = useContext(AuthContext);
+const User = (props) => {
+  const { signed, user } = useContext(AuthContext);
+
+  const userFirstName = user?.name.split(" ")[0];
 
   if (signed) {
     return (
@@ -17,10 +19,10 @@ const User = () => {
         )}
 
         <div>
-          <span>Olá, {user.name}</span>
+          <span>Olá, {userFirstName}</span>
           <span className="acount-actions">
             <Link to="/userdetails">Minha conta</Link> |{" "}
-            <button onClick={() => logOut()}>Sair</button>
+            <button onClick={props.logout}>Sair</button>
           </span>
         </div>
       </div>
