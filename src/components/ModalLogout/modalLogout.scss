@@ -1,5 +1,5 @@
 .container-modal-logout {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -11,6 +11,9 @@
   z-index: 99999;
 
   .modal-logout {
+    background-color: #0000009a;
+    padding: 40px;
+    border-radius: 5px;
     span {
       font-size: 24px;
     }
