@@ -30,7 +30,7 @@ header a {
 header .logo {
   font-size: 2.8rem;
   font-weight: 200;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 
 header .logo span {
@@ -38,19 +38,50 @@ header .logo span {
 }
 
 header .meus-filmes {
-  background-color: #0381FE;
-  padding: .8rem 1.8rem;
-  border-radius: .6rem;
+  background-color: #0381fe;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.6rem;
   font-weight: 600;
   transition-property: opacity;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 header .meus-filmes:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 header .actions {
   display: flex;
   align-items: center;
+}
+
+form {
+  width: 100%;
+  max-width: 40rem;
+  position: relative;
+  input {
+    width: 100%;
+    padding: 8px 0 8px 16px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+  }
+
+  button {
+    position: absolute;
+    width: 40px;
+    height: 31px;
+    right: 0;
+    top: 0;
+    border: none;
+    outline: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #919191;
+    background-color: #dfdfdf;
+    cursor: pointer;
+  }
 }
