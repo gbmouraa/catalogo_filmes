@@ -8,6 +8,7 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import Private from "./Private";
 import UserDetails from "../pages/UserDetails";
+import Search from "../pages/Search";
 
 function RoutesApp() {
   return (
@@ -33,6 +34,7 @@ function RoutesApp() {
         />
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/search/:movie" element={<Search />} />
         <Route path="*" element={<Erro />} />
       </Routes>
     </div>
