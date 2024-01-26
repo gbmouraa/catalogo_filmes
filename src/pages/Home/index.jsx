@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-import "./home.css";
+import "./home.scss";
 import Loader from "../../components/Loader";
+import { IoLogOutOutline } from "react-icons/io5";
 
 function Home() {
   const [filmes, setFilmes] = useState([]);
@@ -40,9 +41,13 @@ function Home() {
                 src={`https://image.tmdb.org/t/p/original${filme.poster_path}`}
                 alt={filme.title}
               />
-              <div>
-                <Link to={`/filme/${filme.id}`}>Acessar</Link>
-              </div>
+              <Link to={`/filme/${filme.id}`} className="filme-focus">
+                <span>{filme.title}</span>
+                <div>
+                  Acessar{" "}
+                  <IoLogOutOutline size={36} style={{ marginLeft: "4px" }} />
+                </div>
+              </Link>
             </article>
           );
         })}
