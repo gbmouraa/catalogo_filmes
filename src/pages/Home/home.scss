@@ -41,10 +41,15 @@
     }
 
     div {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       display: flex;
       align-items: center;
+
+      svg {
+        width: 28px;
+        color: #0381fe;
+      }
     }
   }
 
@@ -54,6 +59,11 @@
     .filme-focus {
       opacity: 1;
     }
+  }
+
+  .filme-title {
+    border-bottom: 3px solid red;
+    max-width: 80%;
   }
 }
 

@@ -72,7 +72,7 @@ function Favoritos() {
                     alt={filme.title}
                   />
                   <Link to={`/filme/${filme.id}`} className="filme-focus">
-                    <span>{filme.title}</span>
+                    <span className="filme-title">{filme.title}</span>
                     <div>
                       Acessar{" "}
                       <IoLogOutOutline

@@ -42,10 +42,10 @@ function Home() {
                 alt={filme.title}
               />
               <Link to={`/filme/${filme.id}`} className="filme-focus">
-                <span>{filme.title}</span>
+                <span className="filme-title">{filme.title}</span>
                 <div>
                   Acessar{" "}
-                  <IoLogOutOutline size={36} style={{ marginLeft: "4px" }} />
+                  <IoLogOutOutline size={30} style={{ marginLeft: "4px" }} />
                 </div>
               </Link>
             </article>
