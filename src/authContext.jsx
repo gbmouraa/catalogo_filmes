@@ -50,10 +50,13 @@ const AuthProvider = ({ children }) => {
             email: value.user.email,
             avatarUrl: null,
           };
+
+          const firstName = name.split(" ")[0];
+
           setUser(data);
           setUserStorage(data);
           navigate("/");
-          toast.success(`Bem vindo(a) ${name}`);
+          toast.success(`Bem vindo(a) ${firstName}`);
           setLoadingAuth(false);
         });
       })
@@ -79,11 +82,14 @@ const AuthProvider = ({ children }) => {
           email: value.user.email,
           avatarUrl: docSnap.data().avatarUrl,
         };
+
+        const firstName = data.name.split(" ")[0];
+
         setUser(data);
         setUserStorage(data);
         setLoadingAuth(false);
         navigate("/");
-        toast.success(`Bem vindo de volta ${data.name}`);
+        toast.success(`Bem vindo de volta ${firstName}`);
       })
       .catch((error) => {
         console.log(error);
