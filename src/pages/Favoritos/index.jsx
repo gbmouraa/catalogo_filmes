@@ -24,7 +24,7 @@ function Favoritos() {
     loadFilmes();
   }, []);
 
-  const excluirFilme = async (id) => {
+  const handleDelete = async (id) => {
     const filtroFilmes = filmes.filter((item) => item.id !== id);
     setFilmes(filtroFilmes);
 
@@ -62,7 +62,7 @@ function Favoritos() {
               <div key={filme.id} className="card-favorito">
                 <button
                   className="btn-excluir"
-                  onClick={() => excluirFilme(filme.id)}
+                  onClick={() => handleDelete(filme.id)}
                 >
                   <FaTrashCan />
                 </button>
