@@ -97,7 +97,7 @@ function Header() {
               ) : (
                 <FaRegUser style={{ marginRight: "14px" }} />
               )}
-              Olá {user.firstName ? user.firstName : "Convidado"}
+              Olá {user?.firstName ? user.firstName : "Convidado"}
             </div>
 
             {user ? (
