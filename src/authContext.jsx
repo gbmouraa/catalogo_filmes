@@ -35,6 +35,9 @@ const AuthProvider = ({ children }) => {
 
   async function signUp(name, email, password) {
     setLoadingAuth(true);
+
+    const firstName = name.split(" ")[0];
+
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (value) => {
         let uid = value.user.uid;
@@ -42,16 +45,16 @@ const AuthProvider = ({ children }) => {
         await setDoc(doc(db, "users", uid), {
           userID: uid,
           name: name,
+          firstName: firstName,
           avatarUrl: null,
         }).then(() => {
           let data = {
             userID: uid,
             name: name,
+            firstName: firstName,
             email: value.user.email,
             avatarUrl: null,
           };
-
-          const firstName = name.split(" ")[0];
 
           setUser(data);
           setUserStorage(data);
@@ -79,17 +82,16 @@ const AuthProvider = ({ children }) => {
         let data = {
           userID: uid,
           name: docSnap.data().name,
+          firstName: docSnap.data().firstName,
           email: value.user.email,
           avatarUrl: docSnap.data().avatarUrl,
         };
-
-        const firstName = data.name.split(" ")[0];
 
         setUser(data);
         setUserStorage(data);
         setLoadingAuth(false);
         navigate("/");
-        toast.success(`Bem vindo de volta ${firstName}`);
+        toast.success(`Bem vindo de volta ${data.firstName}`);
       })
       .catch((error) => {
         console.log(error);

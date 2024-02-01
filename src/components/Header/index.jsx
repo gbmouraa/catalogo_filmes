@@ -21,8 +21,6 @@ function Header() {
 
   const profilePic = user && user.avatarUrl;
 
-  const userFirstName = user?.name.split(" ")[0];
-
   useEffect(() => {
     if (modalIsOpen) {
       document.body.style.overflow = "hidden";
@@ -99,7 +97,7 @@ function Header() {
               ) : (
                 <FaRegUser style={{ marginRight: "14px" }} />
               )}
-              Olá {userFirstName ? userFirstName : "Convidado"}
+              Olá {user.firstName ? user.firstName : "Convidado"}
             </div>
 
             {user ? (

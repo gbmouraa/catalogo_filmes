@@ -7,8 +7,6 @@ import "./user.css";
 const User = (props) => {
   const { signed, user } = useContext(AuthContext);
 
-  const userFirstName = user?.name.split(" ")[0];
-
   if (signed) {
     return (
       <div className="user">
@@ -19,7 +17,7 @@ const User = (props) => {
         )}
 
         <div>
-          <span>Olá, {userFirstName}</span>
+          <span>Olá, {user.firstName}</span>
           <span className="acount-actions">
             <Link to="/userdetails">Minha conta</Link> |{" "}
             <button onClick={props.logout}>Sair</button>
