@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../authContext";
 import { FaRegUserCircle } from "react-icons/fa";
-import "./user.css";
+import "./user.scss";
 
 const User = (props) => {
   const { signed, user } = useContext(AuthContext);
