@@ -34,6 +34,7 @@ function Header() {
   async function handleLogout() {
     await logOut();
     setModalIsOpen(false);
+    setNavIsActive(false);
   }
 
   function handleSubmit(e) {
@@ -96,20 +97,28 @@ function Header() {
               {profilePic !== null ? (
                 <img src={user.avatarUrl} alt="Avatar" />
               ) : (
-                <FaRegUser />
+                <FaRegUser style={{ marginRight: "14px" }} />
               )}
-              Olá {userFirstName}
+              Olá {userFirstName ? userFirstName : "Convidado"}
             </div>
 
-            <ul>
-              <li>
-                <Link>Minha conta</Link>
-              </li>
-              <li>
-                <Link>Meus filmes</Link>
-              </li>
-              <li onClick={() => setModalIsOpen(true)}>Sair</li>
-            </ul>
+            {user ? (
+              <ul>
+                <li>
+                  <Link to="/userdetails">Minha conta</Link>
+                </li>
+                <li>
+                  <Link to="/favoritos">Meus filmes</Link>
+                </li>
+                <li onClick={() => setModalIsOpen(true)}>Sair</li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <Link to="/login">Fazer login</Link>
+                </li>
+              </ul>
+            )}
           </nav>
         </div>
 
