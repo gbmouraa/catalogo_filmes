@@ -5,7 +5,7 @@ import User from "../User";
 import "./header.scss";
 import ModalLogout from "../ModalLogout";
 import { IoSearch } from "react-icons/io5";
-import { LuHandMetal, LuMenu } from "react-icons/lu";
+import { LuMenu } from "react-icons/lu";
 import { CgClose } from "react-icons/cg";
 import { FaRegUser } from "react-icons/fa";
 

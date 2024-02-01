@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import Header from "../../components/Header";
+import { Pagination } from "@mui/material";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./home.scss";
@@ -9,6 +11,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 function Home() {
   const [filmes, setFilmes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function loadFilmes() {
@@ -16,7 +19,7 @@ function Home() {
         params: {
           api_key: "cf0ac2dec34f1b7ed67c633f20a75d67",
           language: "pt-br",
-          page: 1,
+          page: page,
         },
       });
       setFilmes(response.data.results);
@@ -24,7 +27,7 @@ function Home() {
     }
 
     loadFilmes();
-  }, []);
+  }, [page]);
 
   if (loading) {
     return <Loader />;
@@ -52,6 +55,13 @@ function Home() {
           );
         })}
       </section>
+      <Pagination
+        count={15}
+        shape="rounded"
+        size="large"
+        variant="outlined"
+        onChange={(event, value) => setPage(value)}
+      />
     </>
   );
 }

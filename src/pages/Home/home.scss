@@ -5,7 +5,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
-  gap: 2rem;
+  gap: 1.6rem;
+  margin-bottom: 40px;
 }
 
 .filme {
@@ -80,4 +81,24 @@
 .filme img {
   width: 100%;
   display: block;
+}
+
+.MuiPagination-ul {
+  color: #fff;
+
+  button {
+    color: #fff;
+    font-size: 14px;
+    border-color: #525252;
+  }
+
+  li {
+    button.Mui-selected {
+      background-color: rgb(58, 58, 58);
+    }
+
+    div.MuiPaginationItem-ellipsis {
+      color: #fff;
+    }
+  }
 }
