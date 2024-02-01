@@ -4,7 +4,7 @@ import { db } from "../../services/firebaseConection";
 import { updateDoc, doc } from "firebase/firestore";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
-import "./favoritos.css";
+import "./favoritos.scss";
 import { toast } from "react-toastify";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaTrashCan } from "react-icons/fa6";

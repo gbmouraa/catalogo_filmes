@@ -10,7 +10,7 @@
 
 .filme {
   width: 100%;
-  max-width: 33rem;
+  max-width: 15rem;
   background-color: #222222a1;
   overflow: hidden;
   border-radius: 0.8rem;
@@ -65,6 +65,10 @@
     border-bottom: 3px solid red;
     max-width: 80%;
   }
+
+  @media screen and (min-width: 1047px) {
+    max-width: 33rem;
+  }
 }
 
 .filme.favorito {
@@ -76,5 +80,4 @@
 .filme img {
   width: 100%;
   display: block;
-  height: 40rem;
 }
