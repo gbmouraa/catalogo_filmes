@@ -8,6 +8,7 @@ import { FaHeart, FaRegUserCircle } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
 import "./userDetails.scss";
 import { toast } from "react-toastify";
+import Loader from "../../components/Loader";
 
 function UserDetails() {
   const { user, setUser, setUserStorage } = useContext(AuthContext);
@@ -16,6 +17,8 @@ function UserDetails() {
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
   const [profileImg, setProfileImg] = useState(null);
   const [qtdFilmesSalvos, setQtdFilmesSalvos] = useState(null);
+
+  const [loadingChanges, setloadingChanges] = useState(false);
 
   const nameRef = useRef(null);
 
@@ -48,6 +51,7 @@ function UserDetails() {
     if (name === "" && profileImg === null) return;
 
     if (name !== "" && profileImg === null) {
+      setloadingChanges(true);
       const uid = user.userID;
 
       const docRef = doc(db, "users", uid);
@@ -65,10 +69,12 @@ function UserDetails() {
           setUser(data);
           setIsEditing(false);
           toast.success("Perfil atualizado com sucesso.");
+          setloadingChanges(false);
         })
         .catch((error) => {
           console.log(error);
           toast.error("Ocorreu um erro tente novamente");
+          setloadingChanges(false);
         });
 
       return;
@@ -79,6 +85,7 @@ function UserDetails() {
   async function handleUpload() {
     if (profileImg === "") return;
 
+    setloadingChanges(true);
     const uid = user.userID;
 
     const uploadRef = ref(storage, `images/${uid}/${profileImg.name}`);
@@ -102,10 +109,12 @@ function UserDetails() {
             setUserStorage(data);
             toast.success("Perfil atualizado.");
             setIsEditing(false);
+            setloadingChanges(false);
           })
           .catch((error) => {
             console.log(error);
             toast.error("Algo deu errado, tente novamente.");
+            setloadingChanges(false);
           });
       });
     });
@@ -196,6 +205,7 @@ function UserDetails() {
           </>
         )}
       </div>
+      {loadingChanges && <Loader />}
     </>
   );
 }
