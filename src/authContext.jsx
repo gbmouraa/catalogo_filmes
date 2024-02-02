@@ -85,6 +85,7 @@ const AuthProvider = ({ children }) => {
           firstName: docSnap.data().firstName,
           email: value.user.email,
           avatarUrl: docSnap.data().avatarUrl,
+          filmes: docSnap.data()?.filmes,
         };
 
         setUser(data);
