@@ -9,6 +9,7 @@ import Loader from "../../components/Loader";
 import Header from "../../components/Header";
 import { toast } from "react-toastify";
 import { FaStar } from "react-icons/fa";
+import Footer from "../../components/Footer";
 
 function Filme() {
   const { id } = useParams();
@@ -141,6 +142,7 @@ function Filme() {
           </button>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

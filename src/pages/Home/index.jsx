@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-
 import Header from "../../components/Header";
 import { Pagination } from "@mui/material";
+import Footer from "../../components/Footer";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./home.scss";
@@ -55,13 +55,15 @@ function Home() {
           );
         })}
       </section>
+
       <Pagination
         count={15}
         shape="rounded"
-        size="large"
         variant="outlined"
         onChange={(event, value) => setPage(value)}
       />
+
+      <Footer />
     </>
   );
 }

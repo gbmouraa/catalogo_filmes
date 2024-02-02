@@ -8,6 +8,7 @@ import "./favoritos.scss";
 import { toast } from "react-toastify";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaTrashCan } from "react-icons/fa6";
+import Footer from "../../components/Footer";
 
 function Favoritos() {
   const { user, setUser, setUserStorage } = useContext(AuthContext);
@@ -87,6 +88,7 @@ function Favoritos() {
           })}
         </section>
       </section>
+      <Footer />
     </>
   );
 }
