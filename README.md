@@ -4,21 +4,18 @@ Este é um site responsivo de catálogo de filmes, os filmes mostrados são cons
 
 Neste site é possível:
 
-- Ver os 20 filmes mais populares no momento
-- Ver detalhes do filme que deseja acessar
-- Acessar o trailer do filme selecionado
-- Adicionar e excluir filmes da sua lista de favoritos (os filmes adionados a sua lista ficam salvos no localStorage)
+- Ver os filmes por paginação
+- Ver detalhes do filme
+- Fazer login/cadastro de usuário
+- Editar o perfil de usuário
+- Adicionar e excluir filmes da sua lista de favoritos (os filmes adionados a sua lista ficam salvos no firebase)
 
-### Screenshot
-
-![](./public/images/screenshot1.png)
-![](./public/images/screenshot2.png)
-![](./public/images/screenshot3.png)
+![](./public/images/site.app.png)
 
 ### Links
 
-- Repositório URL: [https://github.com/gbmouraa/catalogo_filmes](https://github.com/gbmouraa/catalogo_filmes)
-- Live Site URL: [https://gbmoura-yourmovie.netlify.app/](https://gbmoura-yourmovie.netlify.app/)
+- Repositório: [https://github.com/gbmouraa/catalogo_filmes](https://github.com/gbmouraa/catalogo_filmes)
+- Live Site: [https://gbmoura-yourmovie.netlify.app/](https://gbmoura-yourmovie.netlify.app/)
 
 ### Site construído com
 
@@ -26,6 +23,7 @@ Neste site é possível:
 - React Router
 - Axios
 - [Toastify](https://fkhadra.github.io/react-toastify/introduction) - Para as notificações do site
+- Firebase - Autentição de usuário e armazenar os filmes salvos pelo usuário
 
 ### O que eu aprendi
 
@@ -36,4 +34,4 @@ Estou satisfeito com o resultado e isso me motiva a aprender cada vez mais! :rai
 ## Author
 
 - Frontend Mentor - [@gbmouraa](https://www.frontendmentor.io/profile/gbmouraa)
-- Linkeding - [Gabriel Moura](https://www.linkedin.com/in/gabriel-moura-b63382161/)
+- Linkedin - [Gabriel Moura](https://www.linkedin.com/in/gabriel-moura-b63382161/)
